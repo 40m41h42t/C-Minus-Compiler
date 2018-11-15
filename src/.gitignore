@@ -1,0 +1,6 @@
+*.o
+*.c
+*.h
+!tokens.h
+scanner
+*.test

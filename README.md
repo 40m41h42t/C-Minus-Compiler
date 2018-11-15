@@ -1,6 +1,8 @@
+# 关于
+
 本实验基于CMMInterpreter制作了一个C Minus编译器
 
-要求
+# 要求
 
 - [ ] 第一周：熟悉 FLEX/BISON
 
@@ -18,5 +20,37 @@
 
 完成情况：未来
 
-首先对 CMMInterpreter 进行分析。
+# 分析
+
+进行词法分析时，模仿CMMInterpreter的cmm.l文件。
+
+token分析：要求如下：
+
+```
+C－惯用的词法
+1. 下面是语言的关键字：
+else  if  int  return  void  while
+所有的关键字都是保留字，并且必须是小写。
+2. 下面是专用符号：
++  -  *  /  <  <=  >  >=  ==  !=  =  ;  ,  (  )  [  ]  {  }  /*  */
+3. 其他标记是ID和NUM，通过下列正则表达式定义：
+ID = letter letter*
+NUM = digit digit*
+letter = a|..|z|A|..|Z
+digit = 0|..|9
+小写和大写字母是有区别的。
+4. 空格由空白、换行符和制表符组成。空格通常被忽略，除了它必须分开ID、NUM关键字。
+5. 注释用通常的C语言符号/ * . . . * /围起来。注释可以放在任何空白出现的位置(即注释不能放在标记内)上，且可以超过一行。注释不能嵌套。
+```
+
+这个要求其实不算高。。
+
+首先整理token：
+
+```
+digit       [0-9]
+int_num     {digit}+
+letter      [a-zA-Z]
+identifire  {letter}+
+```
 
